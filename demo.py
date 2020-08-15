@@ -1,6 +1,6 @@
 from json_utils import *
 from selenium_utils import *
-from sql_utils import db_connect, insert_item
+from sql_utils import insert_item
 import sqlite3
 
 wd = get_webdriver()
