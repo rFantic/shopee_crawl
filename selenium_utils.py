@@ -1,8 +1,18 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 
-def get_webdriver():
-	driver_path = ChromeDriverManager().install()
+####################### for window
+default_driver_path = ChromeDriverManager().install()
+
+####################### for ubuntu
+#!apt-get update
+#!apt install chromium-chromedriver
+#!cp /usr/lib/chromium-browser/chromedriver /usr/bin
+#import sys
+#sys.path.insert(0,'/usr/lib/chromium-browser/chromedriver')
+#default_driver_path = "chromedriver"
+
+def get_webdriver(driver_path = default_driver_path):
 	chrome_options = webdriver.ChromeOptions()
 	chrome_options.add_argument('--headless')
 	chrome_options.add_argument('window-size=1366x768')
