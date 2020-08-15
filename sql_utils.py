@@ -1,6 +1,9 @@
 import os.path
 import pickle as pkl
 from cache_utils import *
+import sqlite3
+from sqlite3 import IntegrityError
+
 
 def insert_execute(table, columns, data):
     try:

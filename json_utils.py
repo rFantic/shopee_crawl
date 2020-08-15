@@ -1,4 +1,3 @@
-#@title define get dict
 import requests
 import time
 from cache_utils import *
@@ -18,6 +17,9 @@ def get_items(wd, keywords, page_num, category_id, enable_dump=True):
 				if (itemid, shopid) in items_dict.keys():
 					pass
 				item = get_item(str(itemid), str(shopid), enable_dump)
+				item.setdefault('keywords', [])
+				if keyword not in item['keywords']:
+					item['keywords'].append(keyword)
 				items_dict[(itemid, shopid)] = item
 				items_page_dict[(itemid, shopid)] = item
 	if enable_dump is False:
@@ -49,7 +51,7 @@ def get_id_pairs_from_search(wd, keyword, page, category_id=None, enable_dump=Tr
     urls_dict = saved_data['urls_dict']
     url="https://shopee.vn/search?keyword="+str(keyword)+"&page="+str(page)
     if category_id:
-		url += "&category="+str(category_id)
+        url += "&category="+str(category_id)
     if url in urls_dict.keys():
         return urls_dict[url]
     wd.get(url)
