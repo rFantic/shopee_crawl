@@ -5,7 +5,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 try:
 	default_driver_path = ChromeDriverManager().install()
 except:
-	pass
+	default_driver_path = None
 
 ####################### for ubuntu
 #!apt-get update
