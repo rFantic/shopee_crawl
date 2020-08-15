@@ -9,7 +9,7 @@ def get_items(wd, keywords, page_num, category_id, enable_dump=True):
 	if 'items_dict' not in saved_data:
 		saved_data['items_dict'] = {}
 	items_dict = saved_data['items_dict']
-	items_list = list()
+	items_page_dict = {}
 	for keyword in keywords:
 		for page in range(page_num):
 			id_pairs = get_id_pairs_from_search(wd, keyword, page, category_id, enable_dump)
@@ -18,12 +18,12 @@ def get_items(wd, keywords, page_num, category_id, enable_dump=True):
 				if (itemid, shopid) in items_dict.keys():
 					pass
 				item = get_item(str(itemid), str(shopid), enable_dump)
-				items_dict[(itemid, shopid)] = item					
-				items_list.append(item)
+				items_dict[(itemid, shopid)] = item
+				items_page_dict[(itemid, shopid)] = item
 	if enable_dump is False:
 		dump_saved_data()
 	wd.close()
-	return items_list
+	return items_page_dict
 
 def get_shop(shopid, enable_dump=True):
     url = 'https://shopee.vn/api/v2/shop/get?shopid='+shopid
