@@ -2,7 +2,10 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 
 ####################### for window
-default_driver_path = ChromeDriverManager().install()
+try:
+	default_driver_path = ChromeDriverManager().install()
+except:
+	pass
 
 ####################### for ubuntu
 #!apt-get update
