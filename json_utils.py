@@ -54,10 +54,13 @@ def get_id_pairs_from_search(wd, keyword, page, category_id=None, enable_dump=Tr
         url += "&category="+str(category_id)
     if url in urls_dict.keys():
         return urls_dict[url]
+    print("New Search Url!!!")
     wd.get(url)
-    for i in range(15):
+    end = False
+    while end is False:
         wd.execute_script("window.scrollTo(0, window.scrollY + 200)")
         time.sleep(0.5)
+        end = wd.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
 
     items_elems = wd.find_elements_by_xpath('//a[@data-sqe="link"]')
     pairs = []
