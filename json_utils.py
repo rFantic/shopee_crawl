@@ -3,7 +3,7 @@ import time
 from cache_utils import *
 from tqdm.auto import tqdm
 
-def get_items(wd, keywords, page_num, category_id, enable_dump=True):
+def get_items(wd, keywords, page_num, category_id, enable_dump=False):
 	global saved_data
 	if 'items_dict' not in saved_data:
 		saved_data['items_dict'] = {}
