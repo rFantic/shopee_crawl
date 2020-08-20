@@ -1,6 +1,7 @@
 import os.path
 import pickle as pkl
 import requests
+import shutil
 
 def get_response(url, enable_dump=True):
     global saved_data
@@ -27,6 +28,8 @@ def saved_data_init():
 
 def dump_saved_data():
     global saved_data
+    cwd = os.getcwd() 
+    shutil.copyfile(cwd + '\\saved_data.pkl', cwd + '\\saved_data.pkl.backup') 
     with open('saved_data.pkl', 'wb') as f:
         pkl.dump(saved_data, f)
 
