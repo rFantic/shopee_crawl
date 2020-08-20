@@ -12,6 +12,7 @@ def get_items(wd, keywords, page_num, category_id, enable_dump=False):
 	for keyword in keywords:
 		for page in range(page_num):
 			id_pairs = get_id_pairs_from_search(wd, keyword, page, category_id, enable_dump)
+			dump_saved_data()
 			for id_pair in tqdm(id_pairs):
 				itemid, shopid = id_pair
 				if (itemid, shopid) in items_dict.keys():
@@ -22,7 +23,6 @@ def get_items(wd, keywords, page_num, category_id, enable_dump=False):
 					item['keywords'].append(keyword)
 				items_dict[(itemid, shopid)] = item
 				items_page_dict[(itemid, shopid)] = item
-			dump_saved_data()
 	if enable_dump is False:
 		dump_saved_data()
 	wd.close()
