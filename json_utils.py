@@ -22,6 +22,7 @@ def get_items(wd, keywords, page_num, category_id, enable_dump=False):
 					item['keywords'].append(keyword)
 				items_dict[(itemid, shopid)] = item
 				items_page_dict[(itemid, shopid)] = item
+			dump_saved_data()
 	if enable_dump is False:
 		dump_saved_data()
 	wd.close()
